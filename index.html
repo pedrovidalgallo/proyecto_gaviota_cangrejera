@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaviota Cangrejera - Estuario de Bahía Blanca</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      zoom: 0.9;
+      font-family: 'Georgia', 'Garamond', serif;
+      background: linear-gradient(to bottom, #0a3d62 0%, #1e5f74 50%, #82b8c6 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1400px;
+      background: #ffffff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 520px;
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+                  url('/images/ave13 03.png') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      padding-bottom: 32px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
+      margin-bottom: 16px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-cta:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .content {
+      padding: 60px 80px;
+      background: #f8f9fa;
+    }
+
+    .intro-section {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .side-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 4px solid #ffffff;
+    }
+
+    .narration-player {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .narration-label {
+      color: #5a6c7d;
+      font-size: 0.85rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      margin-bottom: 8px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .narration-player audio {
+      width: 100%;
+      height: 32px;
+      max-width: 100%;
+    }
+
+    .text-content {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #1e5f74;
+    }
+
+    .card h3 {
+      color: #0a3d62;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    .card p {
+      color: #2c3e50;
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .audio-section {
+      background: linear-gradient(135deg, #0a3d62 0%, #1e5f74 100%);
+      padding: 48px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .audio-cta {
+      color: #ffffff;
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      letter-spacing: 1px;
+    }
+
+    audio {
+      width: 100%;
+      max-width: 600px;
+      height: 54px;
+      border-radius: 50px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    audio::-webkit-media-controls-panel {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .section-title {
+      color: #0a3d62;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #2c3e50;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    @media (max-width: 968px) {
+      .intro-section {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .info-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .content {
+        padding: 40px 32px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+      
+      .hero-cta {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Gaviota Cangrejera</h1>
+        <a href="#audio-player" class="hero-cta">Escuchá a las Gaviotas Cangrejeras</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="intro-section">
+        <div class="image-container">
+          <img 
+            src="/images/original.jpeg" 
+            alt="Gaviota Cangrejera en vuelo sobre el océano" 
+            class="side-image"
+          >
+          <div class="narration-player">
+            <span class="narration-label">Narración del texto</span>
+            <audio controls>
+              <source src="audio/narracion.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+        
+        <div class="text-content">
+          <h2 class="section-title">Gaviota Cangrejera</h2>
+          <p class="description">
+            Gaviota grande de espalda oscura y banda caudal negra. En reproducción es blanca con alas negras; fuera de ella tiene capucha negra. Los juveniles son moteados y parduzcos. Habita la costa y se alimenta de cangrejos, con algunos individuos migrando al norte en invierno.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-cards">
+        <div class="card">
+          <h3>Distribución y presencia en la región</h3>
+          <p>
+            La gaviota cangrejera es una especie costera característica del sur de Sudamérica, especialmente frecuente en estuarios y planicies mareales. En el Estuario de Bahía Blanca encuentra uno de sus sitios clave de alimentación y descanso, lo que convierte a la zona en un ambiente prioritario para su conservación.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Comportamiento y hábitos</h3>
+          <p>
+            Suele desplazarse en grupos pequeños, alternando períodos de descanso con la búsqueda activa de alimento en la zona intermareal. Es común verla siguiendo a los cangrejales durante la bajamar o volando bajo sobre la costa. Su rol ecológico es relevante, ya que controla poblaciones de crustáceos y actúa como indicador de la salud del ecosistema estuarial.
+          </p>
+        </div>
+      </div>
+
+      <div id="audio-player" class="audio-section">
+        <div class="audio-cta">Escuchá a las Gaviotas Cangrejeras</div>
+        <audio controls>
+          <source src="audio/Colonia.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
